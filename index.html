@@ -7,15 +7,41 @@
         <title>Document</title>
 
         <!-- Normalize css -->
-        <link rel="stylesheet" href="/static/css/normalize.css" />
+        <link rel="stylesheet" href="/css/normalize.css" />
         <!-- Fonts -->
     
         <!-- Fontawesome -->
 
         <!-- Common style -->
-        <link rel="stylesheet" href="/static/css/index.css" />
+        <link rel="stylesheet" href="/css/index.css" />
 
     </head>
     <body>
+        <header>
+            <h1>Weather App</h1>
+        </header>
+        <main>
+            <section>
+                <div class="favorites">
+                    <form id="form-cities">
+                        <select name="favorite-cities" id="favorite-cities" class="favorite-cities">
+                        </select>
+                        <input type="submit" id="button-check-weather" value="Check weather">
+                    </form>
+                    <button id="addFavorite">Add to favorites</button>
+                </div>
+                <div class="search">
+                    <form id="form-search">
+                        <input type="text" id="input-search" placeholder="Search for a city" autofocus>
+                        <button id="button-search" type="submit">Search</button>
+                        <span id="msg-search" class="msg"></span>
+                    </form>
+                </div>
+                <div id="current-weather"></div>
+            </section>
+        </main>
+        <footer></footer>
+        <script type="module" src="/js/script.js"></script> 
+        <script type="module" src="/js/api.js"></script>
     </body>
 </html>
