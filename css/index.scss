@@ -1,0 +1,34 @@
+$font-stack: 'Rubik', sans-serif;
+$primary-color: #FFF9F5;
+$secondary-color: #F1ECE8;
+$tertiary-color: #4D9DAB;
+$quaternary-color: #A4E2ED;
+$nav-color: #48495D;
+
+
+body {
+    background-color: $primary-color;
+    font: 100% $font-stack;
+    color: $nav-color;
+}
+
+nav {
+    background-color: $nav-color;
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;   
+
+        i {
+            font-size: 4rem;
+            color: $primary-color;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        color: $primary-color;
+        font-size: 3rem;
+        color: $primary-color;
+      }
+}
