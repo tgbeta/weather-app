@@ -24,6 +24,79 @@ document.addEventListener("DOMContentLoaded", () => {
     const option = new Option(existingFavCities[i], existingFavCities[i]);
     favoriteCity.add(option, undefined);
   }
+
+  if (!navigator.geolocation) {
+    msgSearch.textContent = `Your browser doesn't support Geolocation`;
+    msgSearch.classList.add("error");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+  async function currentLocation(position) {
+    const { latitude, longitude } = position.coords;
+
+    try {
+      let urlPosition = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY.WEATHER_API_KEY}`;
+      const response = await fetch(urlPosition);
+
+      return await response.json();
+    } catch (error) {
+      msgSearch.textContent = "Confirm the city name";
+    }
+  }
+  function onError(err) {
+    if (err.code == 1)
+      getData(true).then((data) => {
+        const { main, name, sys, weather } = data;
+
+        if (document.getElementById("child-search") != undefined)
+          currentSearch.removeChild(document.getElementById("child-search"));
+
+        const div = document.createElement("div");
+        div.setAttribute("id", "child-search");
+        div.classList.add("current-weather");
+        const markup = `
+        <h2 class="city-name" data-name="${name},${sys.country}">
+          <span id="name-city">${name}</span>
+          <sup>${sys.country}</sup>
+        </h2>
+        <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
+        <span>${weather[0].description}</span>
+      `;
+        div.innerHTML = markup;
+        currentSearch.appendChild(div);
+
+        formCities.reset();
+        selectCity.focus();
+      });
+  }
+
+  function onSuccess(position) {
+    currentLocation(position).then((data) => {
+      const { main, name, sys, weather } = data;
+
+      if (document.getElementById("child-search") != undefined)
+        currentSearch.removeChild(document.getElementById("child-search"));
+
+      const div = document.createElement("div");
+      div.setAttribute("id", "child-search");
+      div.classList.add("current-weather");
+      const markup = `
+        <h2 class="city-name" data-name="${name},${sys.country}">
+          <span id="name-city">${name}</span>
+          <sup>${sys.country}</sup>
+        </h2>
+        <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
+        <span>${weather[0].description}</span>
+      `;
+      div.innerHTML = markup;
+      currentSearch.appendChild(div);
+
+      formCities.reset();
+      selectCity.focus();
+    });
+  }
 });
 
 addFavorite.onclick = (e) => {
@@ -38,6 +111,19 @@ addFavorite.onclick = (e) => {
 
   const option = new Option(citySearch.innerText, citySearch.innerText);
   favoriteCity.add(option, undefined);
+
+  let existingFavCities = [];
+  debugger;
+  existingFavCities = JSON.parse(localStorage.getItem("favoriteCities"));
+
+  if (existingFavCities == null) {
+    existingFavCities = [];
+  }
+  
+  localStorage.setItem(
+    "favoriteCities",
+    JSON.stringify([...existingFavCities, citySearch.innerText])
+  );
 
   citySearch.value = "";
   citySearch.focus();
@@ -88,11 +174,15 @@ formCities.addEventListener("submit", (buttonCheckWeather) => {
 });
 
 //Check weather - Search bar
-async function getData() {
+async function getData(isDefault) {
   try {
-    let citySearch = inputSearch.value.replace('é','e');
-    debugger
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=${WEATHER_API_KEY.WEATHER_API_KEY}&units=metric`;
+    let url;
+    if (isDefault) {
+      url = `https://api.openweathermap.org/data/2.5/weather?q=Vancouver&appid=${WEATHER_API_KEY.WEATHER_API_KEY}&units=metric`;
+    } else {
+      let citySearch = inputSearch.value.replace("é", "e");
+      url = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=${WEATHER_API_KEY.WEATHER_API_KEY}&units=metric`;
+    }
     const response = await fetch(url);
 
     return await response.json();
@@ -106,7 +196,7 @@ formSearch.addEventListener("submit", (buttonSearch) => {
 
   msgSearch.textContent = "";
 
-  getData()
+  getData(false)
     .then((data) => {
       const { main, name, sys, weather } = data;
 
