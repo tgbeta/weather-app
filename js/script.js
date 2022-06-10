@@ -26,17 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-let citySearch = inputSearch;
-
 addFavorite.onclick = (e) => {
   e.preventDefault();
 
-  if (citySearch.value == "") {
+  let citySearch = document.getElementById("name-city");
+
+  if (citySearch.innerText == "") {
     alert("Please enter the city name.");
     return;
   }
 
-  const option = new Option(citySearch.value, citySearch.value);
+  const option = new Option(citySearch.innerText, citySearch.innerText);
   favoriteCity.add(option, undefined);
 
   citySearch.value = "";
@@ -73,7 +73,7 @@ formCities.addEventListener("submit", (buttonCheckWeather) => {
     div.classList.add("current-weather");
     const markup = `
         <h2 class="city-name" data-name="${name},${sys.country}">
-          <span>${name}</span>
+          <span id="name-city">${name}</span>
           <sup>${sys.country}</sup>
         </h2>
         <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
@@ -87,11 +87,11 @@ formCities.addEventListener("submit", (buttonCheckWeather) => {
   });
 });
 
-
 //Check weather - Search bar
 async function getData() {
   try {
-    let citySearch = inputSearch.value;
+    let citySearch = inputSearch.value.replace('é','e');
+    debugger
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=${WEATHER_API_KEY.WEATHER_API_KEY}&units=metric`;
     const response = await fetch(url);
 
@@ -104,27 +104,33 @@ async function getData() {
 formSearch.addEventListener("submit", (buttonSearch) => {
   buttonSearch.preventDefault();
 
-  getData().then((data) => {
-    const { main, name, sys, weather } = data;
+  msgSearch.textContent = "";
 
-    if (document.getElementById("child-search") != undefined)
-      currentSearch.removeChild(document.getElementById("child-search"));
+  getData()
+    .then((data) => {
+      const { main, name, sys, weather } = data;
 
-    const div = document.createElement("div");
-    div.setAttribute("id", "child-search");
-    div.classList.add("current-weather");
-    const markup = `
+      if (document.getElementById("child-search") != undefined)
+        currentSearch.removeChild(document.getElementById("child-search"));
+
+      const div = document.createElement("div");
+      div.setAttribute("id", "child-search");
+      div.classList.add("current-weather");
+      const markup = `
         <h2 class="city-name" data-name="${name},${sys.country}">
-          <span>${name}</span>
+          <span id="name-city">${name}</span>
           <sup>${sys.country}</sup>
         </h2>
         <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
         <span>${weather[0].description}</span>
       `;
-    div.innerHTML = markup;
-    currentSearch.appendChild(div);
+      div.innerHTML = markup;
+      currentSearch.appendChild(div);
 
-    formSearch.reset();
-    inputSearch.focus();
-  });
+      formSearch.reset();
+      inputSearch.focus();
+    })
+    .catch(() => {
+      msgSearch.textContent = "Confirm the city name";
+    });
 });
