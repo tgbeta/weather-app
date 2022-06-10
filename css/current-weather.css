@@ -1,8 +1,13 @@
 .main-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 2rem 1rem 1rem 1rem;
 }
+
 .main-menu button {
   background-color: #48495D;
   border-color: #48495D;
@@ -11,14 +16,20 @@
 }
 
 .favorite-add {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   padding: 2rem 15rem 1rem 1rem;
 }
+
 .favorite-add i {
   font-size: 2rem;
   color: #48495D;
 }
+
 .favorite-add button {
   all: unset;
   cursor: pointer;
@@ -26,4 +37,5 @@
 
 .current-weather {
   text-align: center;
-}/*# sourceMappingURL=current-weather.css.map */
+}
+/*# sourceMappingURL=current-weather.css.map */

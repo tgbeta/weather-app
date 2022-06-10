@@ -1,1 +1,9 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"forecast.css"}
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "forecast.scss"
+    ],
+    "names": [],
+    "file": "forecast.css"
+}
