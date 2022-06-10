@@ -1,0 +1,36 @@
+.main-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 1rem 1rem 1rem;
+
+    button {
+        background-color: #48495D;
+        border-color: #48495D;
+        color: #FFF9F5;
+        border-radius: 12px;
+    }
+
+}
+
+.favorite-add {
+    display: flex;
+    justify-content: flex-end;
+    padding: 2rem 15rem 1rem 1rem;
+
+    i {
+        font-size: 2rem;
+        color: #48495D;
+    }
+
+    button {
+        all: unset;
+        cursor: pointer;
+    }
+}
+
+
+.current-weather {
+    text-align: center;
+
+
+}

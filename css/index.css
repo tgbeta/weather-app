@@ -1,1 +1,24 @@
-/*# sourceMappingURL=index.css.map */
+body {
+  background-color: #FFF9F5;
+  font: 100% "Rubik", sans-serif;
+  color: #48495D;
+}
+
+nav {
+  background-color: #48495D;
+}
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+nav ul i {
+  font-size: 4rem;
+  color: #FFF9F5;
+}
+nav a {
+  text-decoration: none;
+  color: #FFF9F5;
+  font-size: 3rem;
+  color: #FFF9F5;
+}/*# sourceMappingURL=index.css.map */
