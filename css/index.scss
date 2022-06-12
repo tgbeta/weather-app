@@ -1,34 +1,129 @@
-$font-stack: 'Rubik', sans-serif;
-$primary-color: #FFF9F5;
-$secondary-color: #F1ECE8;
-$tertiary-color: #4D9DAB;
-$quaternary-color: #A4E2ED;
-$nav-color: #48495D;
-
+$font-stack: "Rubik", sans-serif;
+$primary-color: #fff9f5;
+$secondary-color: #f1ece8;
+$tertiary-color: #4d9dab;
+$quaternary-color: #a4e2ed;
+$nav-color: #48495d;
 
 body {
-    background-color: $primary-color;
-    font: 100% $font-stack;
-    color: $nav-color;
+  background-color: $primary-color;
+  font: 100% $font-stack;
+  color: $nav-color;
 }
 
 nav {
-    background-color: $nav-color;
+  background-color: $nav-color;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    i {
+      font-size: 4rem;
+      color: $primary-color;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: $primary-color;
+    font-size: 3rem;
+    color: $primary-color;
+  }
+}
+
+//Current Weather
+.main-menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 1rem 1rem 1rem;
+
+  button {
+    background-color: #48495d;
+    border-color: #48495d;
+    color: #fff9f5;
+    border-radius: 12px;
+  }
+}
+
+.favorite-add {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem;
+
+  i {
+    font-size: 2rem;
+    color: #48495d;
+  }
+
+  button {
+    all: unset;
+    cursor: pointer;
+  }
+}
+
+.current-weather {
+  text-align: center;
+}
+
+//End current weather
+
+@media screen and (min-device-width: 320px) and (max-device-width: 375px) {
+  nav {
     ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;   
-
-        i {
-            font-size: 4rem;
-            color: $primary-color;
-        }
+      i {
+        font-size: 1rem;
+        padding: 1rem;
       }
+    }
 
-      a {
-        text-decoration: none;
-        color: $primary-color;
-        font-size: 3rem;
-        color: $primary-color;
-      }
+    a {
+      font-size: 1rem;
+    }
+  }
+
+  //Current Weather
+  .main-menu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .favorites-menu {
+    padding: 1rem;
+
+    button {
+      margin: 5px;
+    }
+  }
+
+  .favorite-add {
+    padding: 2rem;
+    justify-content: right;
+  }
+
+  .search {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+    button {
+      margin: 5px;
+    }
+  }
+
+  .current-weather {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    margin: 1rem;
+
+    .city-temp {
+      font-size: 2rem;
+      align-self: center;
+    }
+
+    .weather-description {
+      align-content: center;
+    }
+  }
 }

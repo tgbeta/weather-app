@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <sup>${sys.country}</sup>
         </h2>
         <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
-        <span>${weather[0].description}</span>
+        <div class="weather-description"><span>${weather[0].description}</span></div>
       `;
         div.innerHTML = markup;
         currentSearch.appendChild(div);
@@ -83,12 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
       div.setAttribute("id", "child-search");
       div.classList.add("current-weather");
       const markup = `
-        <h2 class="city-name" data-name="${name},${sys.country}">
-          <span id="name-city">${name}</span>
-          <sup>${sys.country}</sup>
-        </h2>
+        <div class="city-name">
+          <h2 data-name="${name},${sys.country}">
+            <span id="name-city">${name}</span>
+            <sup>${sys.country}</sup>
+          </h2>
+        </div>
         <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
-        <span>${weather[0].description}</span>
+        <div class="weather-description"><span>${weather[0].description}</span></div>
       `;
       div.innerHTML = markup;
       currentSearch.appendChild(div);
@@ -158,10 +160,12 @@ formCities.addEventListener("submit", (buttonCheckWeather) => {
     div.setAttribute("id", "child-search");
     div.classList.add("current-weather");
     const markup = `
-        <h2 class="city-name" data-name="${name},${sys.country}">
-          <span id="name-city">${name}</span>
-          <sup>${sys.country}</sup>
-        </h2>
+  ]     <div class="city-name">
+          <h2 data-name="${name},${sys.country}">
+            <span id="name-city">${name}</span>
+            <sup>${sys.country}</sup>
+          </h2>
+        </div>
         <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
         <span>${weather[0].description}</span>
       `;
@@ -207,12 +211,14 @@ formSearch.addEventListener("submit", (buttonSearch) => {
       div.setAttribute("id", "child-search");
       div.classList.add("current-weather");
       const markup = `
-        <h2 class="city-name" data-name="${name},${sys.country}">
-          <span id="name-city">${name}</span>
-          <sup>${sys.country}</sup>
-        </h2>
+        <div class="city-name">
+          <h2 data-name="${name},${sys.country}">
+            <span id="name-city">${name}</span>
+            <sup>${sys.country}</sup>
+          </h2>
+        </div>
         <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
-        <span>${weather[0].description}</span>
+        <div class="weather-description"><span>${weather[0].description}</span></div>
       `;
       div.innerHTML = markup;
       currentSearch.appendChild(div);
