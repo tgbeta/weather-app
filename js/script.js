@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       msgSearch.textContent = "Confirm the city name";
     }
   }
+  
   function onError(err) {
     if (err.code == 1)
       getData(true).then((data) => {
@@ -115,7 +116,6 @@ addFavorite.onclick = (e) => {
   favoriteCity.add(option, undefined);
 
   let existingFavCities = [];
-  debugger;
   existingFavCities = JSON.parse(localStorage.getItem("favoriteCities"));
 
   if (existingFavCities == null) {
@@ -160,7 +160,7 @@ formCities.addEventListener("submit", (buttonCheckWeather) => {
     div.setAttribute("id", "child-search");
     div.classList.add("current-weather");
     const markup = `
-  ]     <div class="city-name">
+       <div class="city-name">
           <h2 data-name="${name},${sys.country}">
             <span id="name-city">${name}</span>
             <sup>${sys.country}</sup>
