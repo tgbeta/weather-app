@@ -1,11 +1,11 @@
 body {
-  background-color: #FFF9F5;
+  background-color: #fff9f5;
   font: 100% "Rubik", sans-serif;
-  color: #48495D;
+  color: #48495d;
 }
 
 nav {
-  background-color: #48495D;
+  background-color: #48495d;
 }
 
 nav ul {
@@ -16,15 +16,95 @@ nav ul {
 
 nav ul i {
   font-size: 4rem;
-  color: #FFF9F5;
+  color: #fff9f5;
 }
 
 nav a {
   text-decoration: none;
-  color: #FFF9F5;
+  color: #fff9f5;
   font-size: 3rem;
-  color: #FFF9F5;
 }
+
+.main-menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 1rem 1rem 1rem;
+}
+.main-menu button {
+  background-color: #48495d;
+  border-color: #48495d;
+  color: #fff9f5;
+  border-radius: 12px;
+}
+
+.favorite-add {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem;
+}
+.favorite-add i {
+  font-size: 2rem;
+  color: #48495d;
+}
+.favorite-add button {
+  all: unset;
+  cursor: pointer;
+}
+
+.current-weather {
+  text-align: center;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 375px) {
+  nav ul i {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+  nav a {
+    font-size: 1rem;
+  }
+
+  .main-menu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .favorites-menu {
+    padding: 1rem;
+  }
+  .favorites-menu button {
+    margin: 5px;
+  }
+
+  .favorite-add {
+    padding: 2rem;
+    justify-content: right;
+  }
+
+  .search {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .search button {
+    margin: 5px;
+  }
+
+  .current-weather {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    margin: 1rem;
+  }
+  .current-weather .city-temp {
+    font-size: 2rem;
+    align-self: center;
+  }
+  .current-weather .weather-description {
+    align-content: center;
+    color: #FFF9F5;
+  }
+}/*# sourceMappingURL=index.css.map */
 
 
 
